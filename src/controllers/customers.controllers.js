@@ -41,5 +41,17 @@ export async function insertCustomer(req, res) {
     } catch (err) {
         res.status(500).send(err.message)
     }
+}
 
+export async function updateCostumer(req, res) {
+    const { id } = req.params
+    const { name, cpf, phone, birthday } = req.body
+    try {
+        await db.query(`UPDATE customers SET name = '${name}', phone = '${phone}', cpf = '${cpf}', 
+        birthday = '${birthday}' WHERE id=$1;`, [id])
+        res.sendStatus(201)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 }
