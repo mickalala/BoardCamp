@@ -12,6 +12,7 @@ export async function getGames(req, res) {
 }
 
 export async function insertGames(req, res) {
+    //falta as regras do negócio
     const { name, image, stockTotal, pricePerDay } = req.body
     const gameSchema = joi.object({
         name: joi.string().required(),
