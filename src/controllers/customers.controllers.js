@@ -33,6 +33,10 @@ export async function insertCustomer(req, res) {
     })
 
     const validation = customersSchema.validate(req.body, { abortEarly: false })
+    if (validation.error) {
+        res.status(400).send('Campos inválidos');
+        return;
+    }
 
     try {
         await db.query(` INSERT INTO customers (name,phone,cpf,birthday)

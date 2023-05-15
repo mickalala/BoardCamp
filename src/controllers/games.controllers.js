@@ -21,6 +21,10 @@ export async function insertGames(req, res) {
         pricePerDay: joi.number().required()
     })
     const validation = gameSchema.validate(req.body, { abortEarly: false })
+    if (validation.error) {
+        res.status(400).send('Campos inválidos');
+        return;
+    }
 
     try {
         await db.query(`INSERT INTO games (name, image, "stockTotal", "pricePerDay") 
