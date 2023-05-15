@@ -2,7 +2,7 @@
   "name": "projeto16-boardcamp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app.js",
   "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
