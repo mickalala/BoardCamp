@@ -11,7 +11,19 @@ export async function getCustomers(req, res) {
     }
 }
 
+export async function getCustomerById(req, res) {
+    const { id } = req.params
+    try {
+        const customer = await db.query(`SELECT * FROM customers WHERE id=$1;`, [id])
+        res.send(customer.rows[0])
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+}
+
 export async function insertCustomer(req, res) {
+    //falta regras do negocio
     const { name, phone, cpf, birthday } = req.body
     const customersSchema = joi.object({
         name: joi.string().required(),
